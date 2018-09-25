@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<plugin id="com.magicw.plugins.gts" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>Gts</name>
+    <asset src="www/Gts.js" target="js/gts.js" />
+
+    <js-module name="Gts" src="www/Gts.js">
+        <clobbers target="cordova.plugins.Gts"/>
+    </js-module>
+
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="Gts">
+                <param name="android-package" value="com.magicw.plugins.gts.Gts"/>
+            </feature>
+        </config-file>
+        <config-file parent="/*" target="AndroidManifest.xml"/>
+        <source-file src="src/android/Gts.java" target-dir="src/com/magicw/plugins/gts" />
+        <source-file src="src/android/UsbBroadcastReceiver.java" target-dir="src/com/magicw/plugins/gts" />
+        <source-file src="src/android/Messages.java" target-dir="src/com/magicw/plugins/gts" />
+        <framework src="com.google.protobuf:protobuf-lite:3.0.0" />
+    </platform>
+</plugin>
