@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
-<plugin id="com.magicw.plugins.gts" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
-    <name>Gts</name>
+<plugin id="cordova-plugin-keybox-wallet" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>cordova-plugin-keybox-wallet</name>
     <asset src="www/Gts.js" target="js/gts.js" />
 
     <js-module name="Gts" src="www/Gts.js">
