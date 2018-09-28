@@ -190,6 +190,12 @@ public class Gts extends CordovaPlugin {
             errJson.put("error", "data parser error");
             JSONObject json = new JSONObject();
             JSONObject d = new JSONObject();
+            if (messageType == MsgTypeRequestRejected) {
+                Messages.RequestRejected rej = Messages.RequestRejected.parseFrom(in);
+                json.put("errcode", rej.getErrCode());
+                json.put("errmessage", rej.getErrMessage());
+                return json;
+            }
             if (reqMethod.equals("getPublicKeyFromPath")) {
                 if (messageType == MsgTypeEccGetPublicKeyReply) {
                     Messages.EccGetPublicKeyReply rep = Messages.EccGetPublicKeyReply.parseFrom(in);
@@ -358,7 +364,8 @@ public class Gts extends CordovaPlugin {
             Messages.EccMultiplyRequest.Builder builder = Messages.EccMultiplyRequest.newBuilder();
             builder.setHdPath(jsonObj.getString("path"));
             builder.setAlgorithm(Messages.EccAlgorithm.SECP256K1);
-            builder.setInputPubkey(ByteString.copyFrom(Base64.decode(jsonObj.getString("pubkey").getBytes(),Base64.DEFAULT)));
+            builder.setInputPubkey(
+                    ByteString.copyFrom(Base64.decode(jsonObj.getString("pubkey").getBytes(), Base64.DEFAULT)));
 
             Messages.EccMultiplyRequest req = builder.build();
 
