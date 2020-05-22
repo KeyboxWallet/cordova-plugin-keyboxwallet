@@ -1,0 +1,3 @@
+[submodule "protodef"]
+	path = protodef
+	url = git@github.com:KeyboxWallet/protodef.git

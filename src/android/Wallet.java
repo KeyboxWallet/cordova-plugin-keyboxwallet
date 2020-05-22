@@ -27,8 +27,7 @@ import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.util.Iterator;
 
-import walletproto.Messages;
-import com.magicw.plugins.gts.UsbBroadcastReceiver.UsbInfo;
+import UsbBroadcastReceiver.UsbInfo;
 
 /**
  * This class echoes a string called from JavaScript.
@@ -191,14 +190,14 @@ public class Wallt extends CordovaPlugin {
             JSONObject json = new JSONObject();
             JSONObject d = new JSONObject();
             if (messageType == MsgTypeRequestRejected) {
-                Messages.RequestRejected rej = Messages.RequestRejected.parseFrom(in);
+                KeyboxProtobuf.RequestRejected rej = KeyboxProtobuf.RequestRejected.parseFrom(in);
                 json.put("errcode", rej.getErrCode());
                 json.put("errmessage", rej.getErrMessage());
                 return json;
             }
             if (reqMethod.equals("getPublicKeyFromPath")) {
                 if (messageType == MsgTypeEccGetPublicKeyReply) {
-                    Messages.EccGetPublicKeyReply rep = Messages.EccGetPublicKeyReply.parseFrom(in);
+                    KeyboxProtobuf.EccGetPublicKeyReply rep = KeyboxProtobuf.EccGetPublicKeyReply.parseFrom(in);
 
                     d.put("ver", 1);
                     d.put("type", "ecc-pubkey");
@@ -215,7 +214,7 @@ public class Wallt extends CordovaPlugin {
 
                 if (messageType == MsgTypeEccSignResult) {
                     // 2!!!!!!!!
-                    Messages.EccSignResult res = Messages.EccSignResult.parseFrom(in);
+                    KeyboxProtobuf.EccSignResult res = KeyboxProtobuf.EccSignResult.parseFrom(in);
 
                     JSONObject iObj = new JSONObject();
                     iObj.put("ver", 1);
@@ -242,7 +241,7 @@ public class Wallt extends CordovaPlugin {
                 }
             } else if (reqMethod.equals("multiplyReq")) {
                 if (messageType == MsgTypeEccMultiplyReply) {
-                    Messages.EccMultiplyReply rep = Messages.EccMultiplyReply.parseFrom(in);
+                    KeyboxProtobuf.EccMultiplyReply rep = KeyboxProtobuf.EccMultiplyReply.parseFrom(in);
 
                     d.put("ver", 1);
                     d.put("curve", "secp256k1");
@@ -304,9 +303,9 @@ public class Wallt extends CordovaPlugin {
     private void getPublicKeyFromPath(String path, final CallbackContext callbackContext) {
         try {
             int messageType = MsgTypeEccGetPublicKeyRequest;
-            Messages.EccGetPublicKeyRequest.Builder builder = Messages.EccGetPublicKeyRequest.newBuilder();
+            KeyboxProtobuf.EccGetPublicKeyRequest.Builder builder = KeyboxProtobuf.EccGetPublicKeyRequest.newBuilder();
             builder.setHdPath(path);
-            Messages.EccGetPublicKeyRequest req = builder.build();
+            KeyboxProtobuf.EccGetPublicKeyRequest req = builder.build();
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             req.writeTo(stream);
 
@@ -327,20 +326,20 @@ public class Wallt extends CordovaPlugin {
             int messageType = MsgTypeEccSignRequest;
             JSONObject jsonObj = jObj;
 
-            Messages.EccSignRequest.Builder builder = Messages.EccSignRequest.newBuilder();
+            KeyboxProtobuf.EccSignRequest.Builder builder = KeyboxProtobuf.EccSignRequest.newBuilder();
             builder.setHdPath(jsonObj.getString("path"));
             // new String(Base64.decode(strBase64.getBytes(), Base64.DEFAULT));
             builder.setHash(ByteString.copyFrom(Base64.decode(jsonObj.getString("hash").getBytes(), Base64.DEFAULT)));
-            builder.setAlgorithm(Messages.EccAlgorithm.SECP256K1);
+            builder.setAlgorithm(KeyboxProtobuf.EccAlgorithm.SECP256K1);
 
-            Messages.EccSignOptions.Builder esoBuilder = Messages.EccSignOptions.newBuilder();
+            KeyboxProtobuf.EccSignOptions.Builder esoBuilder = KeyboxProtobuf.EccSignOptions.newBuilder();
             JSONObject jsonOpt = (JSONObject) jsonObj.get("options");
             esoBuilder.setRfc6979(jsonOpt.getBoolean("rfc6979"));
             esoBuilder.setGrapheneCanonize(jsonOpt.getBoolean("graphene_canonize"));
 
             builder.setOptions(esoBuilder.build());
 
-            Messages.EccSignRequest req = builder.build();
+            KeyboxProtobuf.EccSignRequest req = builder.build();
 
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             req.writeTo(stream);
@@ -361,13 +360,13 @@ public class Wallt extends CordovaPlugin {
             int messageType = MsgTypeEccMultiplyRequest;
             JSONObject jsonObj = new JSONObject(jstring);
 
-            Messages.EccMultiplyRequest.Builder builder = Messages.EccMultiplyRequest.newBuilder();
+            KeyboxProtobuf.EccMultiplyRequest.Builder builder = KeyboxProtobuf.EccMultiplyRequest.newBuilder();
             builder.setHdPath(jsonObj.getString("path"));
-            builder.setAlgorithm(Messages.EccAlgorithm.SECP256K1);
+            builder.setAlgorithm(KeyboxProtobuf.EccAlgorithm.SECP256K1);
             builder.setInputPubkey(
                     ByteString.copyFrom(Base64.decode(jsonObj.getString("pubkey").getBytes(), Base64.DEFAULT)));
 
-            Messages.EccMultiplyRequest req = builder.build();
+            KeyboxProtobuf.EccMultiplyRequest req = builder.build();
 
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             req.writeTo(stream);

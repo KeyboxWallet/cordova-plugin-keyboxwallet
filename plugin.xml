@@ -16,7 +16,7 @@
         <config-file parent="/*" target="AndroidManifest.xml"/>
         <source-file src="src/android/wallet.java" target-dir="src/com/keybox/plugins/wallet" />
         <source-file src="src/android/UsbBroadcastReceiver.java" target-dir="src/com/keybox/plugins/wallet" />
-        <source-file src="src/android/Messages.java" target-dir="src/com/keybox/plugins/wallet" />
+        <source-file src="src/android/KeyboxProtobuf.java" target-dir="src/com/keybox/plugins/wallet" />
         <framework src="com.google.protobuf:protobuf-lite:3.0.0" />
     </platform>
 </plugin>
