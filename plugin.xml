@@ -1,22 +1,22 @@
 <?xml version="1.0" ?>
 <plugin id="cordova-plugin-keybox-wallet" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
     <name>cordova-plugin-keybox-wallet</name>
-    <asset src="www/Gts.js" target="js/gts.js" />
+    <asset src="www/keyboxwallet.js" target="js/keyboxwalletplugin.js" />
 
-    <js-module name="Gts" src="www/Gts.js">
-        <clobbers target="cordova.plugins.Gts"/>
+    <js-module name="keyboxwallet" src="www/keyboxwallet.js">
+        <clobbers target="cordova.plugins.keyboxwallet"/>
     </js-module>
 
     <platform name="android">
         <config-file parent="/*" target="res/xml/config.xml">
-            <feature name="Gts">
-                <param name="android-package" value="com.magicw.plugins.gts.Gts"/>
+            <feature name="keyboxwallet">
+                <param name="android-package" value="com.keybox.plugins.wallet"/>
             </feature>
         </config-file>
         <config-file parent="/*" target="AndroidManifest.xml"/>
-        <source-file src="src/android/Gts.java" target-dir="src/com/magicw/plugins/gts" />
-        <source-file src="src/android/UsbBroadcastReceiver.java" target-dir="src/com/magicw/plugins/gts" />
-        <source-file src="src/android/Messages.java" target-dir="src/com/magicw/plugins/gts" />
+        <source-file src="src/android/wallet.java" target-dir="src/com/keybox/plugins/wallet" />
+        <source-file src="src/android/UsbBroadcastReceiver.java" target-dir="src/com/keybox/plugins/wallet" />
+        <source-file src="src/android/Messages.java" target-dir="src/com/keybox/plugins/wallet" />
         <framework src="com.google.protobuf:protobuf-lite:3.0.0" />
     </platform>
 </plugin>

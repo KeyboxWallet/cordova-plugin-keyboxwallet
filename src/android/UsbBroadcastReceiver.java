@@ -1,4 +1,4 @@
-package com.magicw.plugins.gts;
+package com.keybox.plugins.wallet;
 
 import org.apache.cordova.CallbackContext;
 
@@ -17,7 +17,7 @@ public class UsbBroadcastReceiver extends BroadcastReceiver {
 
     private final String TAG = UsbBroadcastReceiver.class.getSimpleName();
 
-    public static final String USB_PERMISSION ="com.magicw.plugins.gts.USB_PERMISSION";
+    public static final String USB_PERMISSION ="com.keybox.plugins.wallet.USB_PERMISSION";
 
     private CallbackContext callbackContext;
 
@@ -41,9 +41,9 @@ public class UsbBroadcastReceiver extends BroadcastReceiver {
         if (USB_PERMISSION.equals(action)) {
 
             if (intent.getBooleanExtra(UsbManager.EXTRA_PERMISSION_GRANTED, false)) {
-                if(Gts.usbDevice != null){
-                    UsbInfo.connection = Gts.usbManager.openDevice(Gts.usbDevice);
-                    UsbInfo.intf = Gts.usbDevice.getInterface(0);
+                if(Wallet.usbDevice != null){
+                    UsbInfo.connection = Wallet.usbManager.openDevice(Wallet.usbDevice);
+                    UsbInfo.intf = Wallet.usbDevice.getInterface(0);
                     UsbInfo.read_endpoint = UsbInfo.intf.getEndpoint(0);
                     UsbInfo.write_endpoint = UsbInfo.intf.getEndpoint(1);
                     UsbInfo.connection.claimInterface(UsbInfo.intf,true);

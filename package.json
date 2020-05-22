@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-keybox-wallet",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "plugin for integrating keybox",
   "cordova": {
     "id": "cordova-plugin-keybox-wallet",
@@ -10,13 +10,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/HaoLLL/Gts"
+    "url": "https://github.com/keyboxwallet/cordova-plugin-keyboxwallet"
   },
   "keywords": [
     "ecosystem:cordova",
     "cordova-android",
     "cordova-ios"
   ],
-  "author": "MagicWallet Team",
+  "author": "Keybox Wallet Team",
   "license": "unlicensed"
 }

@@ -1,4 +1,4 @@
-package com.magicw.plugins.gts;
+package com.keybox.plugins.wallet;
 
 import android.app.PendingIntent;
 import android.content.Context;
@@ -33,9 +33,9 @@ import com.magicw.plugins.gts.UsbBroadcastReceiver.UsbInfo;
 /**
  * This class echoes a string called from JavaScript.
  */
-public class Gts extends CordovaPlugin {
+public class Wallt extends CordovaPlugin {
 
-    private static final String TAG = Gts.class.getSimpleName();
+    private static final String TAG = Wallet.class.getSimpleName();
     private static final String ACTION_REQUEST_PERMISSION = "requestPermission";
 
     // private static final int MsgTypeLowLimit = 0;

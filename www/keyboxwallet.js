@@ -7,19 +7,19 @@ function requestPermission(opts, successCallback, errorCallback) {
         opts = {};
     }
 
-    exec(successCallback, errorCallback, 'Gts', 'requestPermission', [{ 'opts': opts }]);
+    exec(successCallback, errorCallback, 'keyboxwallet', 'requestPermission', [{ 'opts': opts }]);
 }
 
 function getPublicKeyFromPath(path, successCallback, errorCallback) {
-    exec(successCallback, errorCallback, 'Gts', 'getPublicKeyFromPath', [path]);
+    exec(successCallback, errorCallback, 'keyboxwallet', 'getPublicKeyFromPath', [path]);
 }
 
 function signReq(jparam, successCallback, errorCallback) {
-    exec(successCallback, errorCallback, 'Gts', 'signReq', [jparam]);
+    exec(successCallback, errorCallback, 'keyboxwallet', 'signReq', [jparam]);
 }
 
 function multiplyReq(jparam, successCallback, errorCallback) {
-    exec(successCallback, errorCallback, 'Gts', 'multiplyReq', [jparam]);
+    exec(successCallback, errorCallback, 'keyboxwallet', 'multiplyReq', [jparam]);
 }
 
 exports.requestPermission = requestPermission;
