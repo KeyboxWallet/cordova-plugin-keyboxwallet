@@ -18,5 +18,5 @@
     "cordova-ios"
   ],
   "author": "Keybox Wallet Team",
-  "license": "unlicensed"
+  "license": "MIT"
 }
