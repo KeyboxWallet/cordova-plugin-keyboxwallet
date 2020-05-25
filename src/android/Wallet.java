@@ -26,13 +26,14 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.util.Iterator;
+import java.util.Collection;
 
-import UsbBroadcastReceiver.UsbInfo;
+import com.keybox.plugins.wallet.UsbBroadcastReceiver.UsbInfo;
 
 /**
  * This class echoes a string called from JavaScript.
  */
-public class Wallt extends CordovaPlugin {
+public class Wallet extends CordovaPlugin {
 
     private static final String TAG = Wallet.class.getSimpleName();
     private static final String ACTION_REQUEST_PERMISSION = "requestPermission";
@@ -276,12 +277,22 @@ public class Wallt extends CordovaPlugin {
             public void run() {
 
                 usbManager = (UsbManager) cordova.getActivity().getSystemService(Context.USB_SERVICE);
-
+                boolean found = false;
                 if (usbManager.getDeviceList().size() > 0) {
                     // driver = availableDrivers.get(0);
-                    Iterator it = usbManager.getDeviceList().values().iterator();
-                    usbDevice = (UsbDevice) it.next();
-
+                    Collection<UsbDevice> values = usbManager.getDeviceList().values();
+                    Iterator it = values.iterator();
+                    while( it.hasNext() && !found){
+                        usbDevice = (UsbDevice) it.next();
+                        if(usbDevice.getVendorId() == 0xb6ab && usbDevice.getProductId() == 0xbeab){
+                            found = true;
+                        }
+                        else{
+                            Log.d(TAG, "vendorId:" + usbDevice.getVendorId() + " productId:" + usbDevice.getProductId());
+                        }
+                    }
+                }
+                if( found ){
                     PendingIntent pendingIntent = PendingIntent.getBroadcast(cordova.getActivity(), 0,
                             new Intent(UsbBroadcastReceiver.USB_PERMISSION), 0);
 

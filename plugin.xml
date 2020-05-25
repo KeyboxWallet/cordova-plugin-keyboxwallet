@@ -10,13 +10,13 @@
     <platform name="android">
         <config-file parent="/*" target="res/xml/config.xml">
             <feature name="keyboxwallet">
-                <param name="android-package" value="com.keybox.plugins.wallet"/>
+                <param name="android-package" value="com.keybox.plugins.wallet.Wallet"/>
             </feature>
         </config-file>
         <config-file parent="/*" target="AndroidManifest.xml"/>
-        <source-file src="src/android/wallet.java" target-dir="src/com/keybox/plugins/wallet" />
+        <source-file src="src/android/Wallet.java" target-dir="src/com/keybox/plugins/wallet" />
         <source-file src="src/android/UsbBroadcastReceiver.java" target-dir="src/com/keybox/plugins/wallet" />
         <source-file src="src/android/KeyboxProtobuf.java" target-dir="src/com/keybox/plugins/wallet" />
-        <framework src="com.google.protobuf:protobuf-lite:3.0.0" />
+        <framework src="com.google.protobuf:protobuf-javalite:3.12.1" />
     </platform>
 </plugin>

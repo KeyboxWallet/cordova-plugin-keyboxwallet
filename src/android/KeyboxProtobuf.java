@@ -1,1 +1,1 @@
-../../protodef/java/com/keybox/plugins/wallet/KeyboxProtobuf.java
+../../protodef/java-lite/com/keybox/plugins/wallet/KeyboxProtobuf.java
