@@ -284,7 +284,7 @@ public class Wallet extends CordovaPlugin {
                     Iterator it = values.iterator();
                     while( it.hasNext() && !found){
                         usbDevice = (UsbDevice) it.next();
-                        if(usbDevice.getVendorId() == 0xb6ab && usbDevice.getProductId() == 0xbeab){
+                        if(usbDevice.getVendorId() == 0xb6ab && usbDevice.getProductId() == 0xbaeb){
                             found = true;
                         }
                         else{
